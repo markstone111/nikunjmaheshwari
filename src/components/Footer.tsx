@@ -1,13 +1,21 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Home, Code2, FolderGit2, Mail } from "lucide-react";
 
 export default function Footer() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const currentYear = new Date().getFullYear();
+
+  const navLinks = [
+    { name: "Home", href: "#home", icon: <Home className="w-4 h-4" /> },
+    { name: "Skills", href: "#about", icon: <Code2 className="w-4 h-4" /> },
+    { name: "Projects", href: "#projects", icon: <FolderGit2 className="w-4 h-4" /> },
+    { name: "Contact", href: "#contact", icon: <Mail className="w-4 h-4" /> },
+  ];
 
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -24,31 +32,35 @@ export default function Footer() {
               Tech Portfolio
             </h4>
           </div>
-          
+
+          {/* navigatcions */}
           <nav className="flex justify-center gap-8 mb-8">
-            {['Home', 'Skills', 'Projects', 'Contact'].map((item) => (
+            {navLinks.map((link) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-gray-400 hover:text-purple-400 transition-colors"
+                key={link.name}
+                href={link.href}
+                className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
               >
-                {item}
+                {link.icon}
+                {link.name}
               </a>
             ))}
           </nav>
-          
-          <div className="text-center text-gray-500 text-sm">
-            <p className="mb-2">
-              Made with ❤️ by Nikunj_Maheshwari @{currentYear}
+
+          {/* text */}
+          <div className="text-center text-gray-500 text-sm space-y-2">
+            <p>
+              Made with <span className="text-pink-500">❤️</span> by{" "}
+              <a
+                href="https://github.com/markstone111/side_end.dev.git"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+              >
+                side_end.dev
+              </a>
             </p>
-            <a
-              href="https://github.com/markstone111/side_end.dev.git"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-400 hover:text-purple-300 transition-colors"
-            >
-              side_end.dev
-            </a>
+            <p>© {currentYear} All rights reserved.</p>
           </div>
         </motion.div>
       </div>
