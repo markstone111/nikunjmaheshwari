@@ -75,7 +75,7 @@ const Hero = () => {
           <a href="#contact" className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-purple-900 transition-colors">
             Contact Me
           </a>
-          <a href="https://drive.google.com/file/d/1OxF6yhaxq9Um5I70qrAXeQU3O-D5CYcv/view?usp=drivesdk" className="px-8 py-3 bg-white text-purple-900 rounded-full hover:bg-gray-200 transition-colors">
+          <a href="https://drive.google.com/file/d/1KNRc-fAXp349g0WeNipx1v3xU1i8ZSYx/view?usp=sharing" className="px-8 py-3 bg-white text-purple-900 rounded-full hover:bg-gray-200 transition-colors">
             Download Resume
           </a>
         </motion.div>
