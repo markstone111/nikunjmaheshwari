@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-color: #f4f4f0;
+    --text-color: #000000;
+  }
+
+  .dark {
+    --bg-color: #171717; /* TARS Dark Board */
+    --text-color: #ffffff;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-brutal-bg text-black dark:bg-tars-board dark:text-white transition-colors duration-300;
+    /* Custom scrollbar to fit the neo-brutalist theme */
+  }
+}
+
+@layer utilities {
+  .brutal-card {
+    @apply bg-white dark:bg-tars-dark border-brutal border-black shadow-brutal transition-transform hover:-translate-y-1 hover:shadow-brutal-lg;
+  }
+  
+  .brutal-btn {
+    @apply px-6 py-2 border-brutal border-black shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all active:translate-x-[4px] active:translate-y-[4px] font-bold;
+  }
+}

@@ -8,8 +8,6 @@ export default function Footer() {
     threshold: 0.1,
   });
 
-  const currentYear = new Date().getFullYear();
-
   const navLinks = [
     { name: "Home", href: "#home", icon: <Home className="w-4 h-4" /> },
     { name: "Skills", href: "#about", icon: <Code2 className="w-4 h-4" /> },
@@ -18,7 +16,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-brutal-bg dark:bg-tars-dark text-black dark:text-white py-12 border-t-4 border-black">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -27,19 +25,21 @@ export default function Footer() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
+          {/* Title */}
           <div className="text-center mb-8">
-            <h4 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text mb-2">
+            <h4 className="text-3xl md:text-4xl font-black mb-2 uppercase tracking-tighter drop-shadow-[2px_2px_0_rgba(74,222,128,1)]">
               Tech Portfolio
             </h4>
           </div>
 
-          {/* navigatcions */}
+
+          {/* Navigation */}
           <nav className="flex justify-center gap-8 mb-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
+                className="flex items-center gap-2 text-black dark:text-gray-300 hover:text-brutal-green transition-colors font-bold uppercase"
               >
                 {link.icon}
                 {link.name}
@@ -47,20 +47,19 @@ export default function Footer() {
             ))}
           </nav>
 
-          {/* text */}
-          <div className="text-center text-gray-500 text-sm space-y-2">
-            <p>
-              Made with <span className="text-pink-500">❤️</span> by{" "}
-              <a
-                href="https://github.com/markstone111/side_end.dev.git"
+          {/* Footer Text */}
+          <div className="text-center text-black dark:text-gray-400 font-bold space-y-4 p-6 border-4 border-black bg-white dark:bg-tars-gray shadow-brutal mx-auto max-w-xl">
+            <p className="text-lg">Still here? You're either hiring or curious.<br></br> Either way, let's talk.</p>
+            <p>Got an idea worth building? Drop a line at: {" "}</p>
+            <a
+                href="mailto:nikunjnehu@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
+                className="inline-block px-4 py-2 bg-brutal-green text-black border-2 border-black hover:-translate-y-1 hover:shadow-brutal transition-transform"
               >
-                side_end.dev
-              </a>
-            </p>
-            <p>© {currentYear} All rights reserved.</p>
+                nikunjnehu@gmail.com
+            </a>
+            {/* <p>© {currentYear} All rights reserved.</p> */}
           </div>
         </motion.div>
       </div>
