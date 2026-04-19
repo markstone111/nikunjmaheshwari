@@ -1,0 +1,7 @@
+.cmdk-item {
+  @apply flex items-center px-4 py-3 cursor-pointer text-sm font-medium rounded-sm transition-colors;
+}
+
+.cmdk-item[data-selected="true"] {
+  @apply bg-gray-100 dark:bg-tars-gray text-black dark:text-white border-l-4 border-brutal-green;
+}

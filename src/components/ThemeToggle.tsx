@@ -52,7 +52,7 @@ export default function ThemeToggle() {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={handleThemeChange}
-      className="fixed top-4 right-4 z-50 p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors"
+      className="fixed top-4 right-4 z-[100] p-2 md:p-3 rounded-none bg-black dark:bg-brutal-green shadow-brutal border-2 border-black text-white dark:text-black transition-all hover:-translate-y-1"
       title={`Current Theme: ${theme}`}
     >
       {getIcon()}
