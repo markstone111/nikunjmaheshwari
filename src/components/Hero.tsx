@@ -113,14 +113,15 @@
 
 // Hero.tsx
 
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Github, Linkedin, Mail, TerminalSquare } from 'lucide-react';
-import TerminalView from './TerminalView';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Hero = () => {
-  const [isTerminalOpen, setTerminalOpen] = useState(false);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Scroll configurations
   const { scrollYProgress } = useScroll({
@@ -137,9 +138,16 @@ const Hero = () => {
   
   const opacityFade = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const scrollToProjects = (e: React.MouseEvent) => {
+  const scrollToSection = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -159,15 +167,16 @@ const Hero = () => {
       ></motion.div>
 
       {/* --- Terminal Trigger Button --- */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setTerminalOpen(true)}
-        className="fixed top-4 right-28 md:top-6 md:right-[unset] md:left-6 md:bottom-[unset] z-50 p-2 md:p-3 rounded-none bg-black dark:bg-brutal-green text-brutal-green dark:text-black border-2 border-black shadow-brutal hover:translate-y-[2px] transition-transform"
-        title="Open Interactive Terminal"
-      >
-        <TerminalSquare size={20} />
-      </motion.button>
+      <Link to="/terminal">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed top-4 right-28 md:top-6 md:right-[unset] md:left-6 md:bottom-[unset] z-50 p-2 md:p-3 rounded-none bg-black dark:bg-brutal-green text-brutal-green dark:text-black border-2 border-black shadow-brutal hover:translate-y-[2px] transition-transform"
+          title="Open Interactive Terminal"
+        >
+          <TerminalSquare size={20} />
+        </motion.button>
+      </Link>
 
       {/* Main Container Layering */}
       <div className="relative w-full max-w-7xl mx-auto px-4 mt-24 md:mt-20 flex flex-col md:flex-row items-center justify-between z-10 min-h-[80vh] gap-12 md:gap-0">
@@ -219,10 +228,10 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4 md:pt-6 w-full sm:w-auto"
           >
-            <a href="#projects" onClick={scrollToProjects} className="brutal-btn bg-brutal-green text-black px-8 py-3 text-lg text-center w-full sm:w-auto">
+            <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="brutal-btn bg-brutal-green text-black px-8 py-3 text-lg text-center w-full sm:w-auto">
               View Projects
             </a>
-            <a href="#contact" className="brutal-btn bg-white dark:bg-tars-gray text-black dark:text-white px-8 py-3 text-lg border-2 border-black text-center w-full sm:w-auto">
+            <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="brutal-btn bg-white dark:bg-tars-gray text-black dark:text-white px-8 py-3 text-lg border-2 border-black text-center w-full sm:w-auto">
               Connect
             </a>
           </motion.div>
@@ -286,8 +295,7 @@ const Hero = () => {
         </a>
       </motion.div>
 
-      {/* --- Terminal Render --- */}
-      {isTerminalOpen && <TerminalView onClose={() => setTerminalOpen(false)} />}
+      {/* Overlay removed. Terminal logic is now handled in App.tsx / TerminalRoute */}
     </section>
   );
 };

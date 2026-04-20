@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // const projects = [
 //   {
@@ -253,6 +254,12 @@ export default function Projects() {
             {projects.map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index} />
             ))}
+          </div>
+
+          <div className="flex justify-center mt-16 pb-8">
+            <Link to="/projects" className="brutal-btn bg-black text-white dark:bg-brutal-yellow dark:text-black px-10 py-5 text-xl lg:text-2xl border-4 border-black font-black uppercase tracking-widest shadow-brutal hover:translate-y-1 hover:shadow-brutal-sm transition-all rounded-none">
+               View All Projects
+            </Link>
           </div>
         </motion.div>
       </div>
