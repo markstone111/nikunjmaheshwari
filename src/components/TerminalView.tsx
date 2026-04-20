@@ -1,12 +1,10 @@
-
 // components/TerminalView.tsx
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { projectsData } from '../data/projects';
 
-interface TerminalViewProps {
-  onClose: () => void;
-}
-
-const TerminalView = ({ onClose }: TerminalViewProps) => {
+const TerminalView = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     const terminalLogic = () => {
       // =================================================================== //
@@ -31,17 +29,6 @@ const TerminalView = ({ onClose }: TerminalViewProps) => {
               <div class="table-row"><div class="table-col-1">Databases:</div><div class="table-col-2">MongoDB, PostgreSQL, MySQL, Firebase</div></div>
           </div>`,
         projectsHeader: "Here are some of our featured projects.",
-        projects: [
-            { name: "should-i-bunk", description: "Mobile app to help students decide on attending class using logistic regression." },
-            { name: "nlp-chatbot", description: "An intelligent, intent-based chatbot using Natural Language Processing." },
-            { name: "ecommerce-app", description: "A full-featured Ecom app with Flutter, Firebase, and a secure payment gateway." },
-            { name: "task-alarm-app", description: "Android app that automatically sets alarms based on user tasks and time." },
-            { name: "human-pose-estimation", description: "A web app for real-time human pose detection using OpenCV and MediaPipe." },
-            { name: "task-list-app", description: "An Android task-list app with Room DB, widgets, and search functionality." },
-            { name: "multi-unit-converter", description: "Android app for unit conversion, built with Jetpack Compose." },
-            { name: "portfolio-website", description: "A personal portfolio built with Next.js and Tailwind CSS." },
-            { name: "athlete-connection-app", description: "A multi-platform app to connect athletes and coaches (in progress)." }
-        ],
         contact: `You can reach us here:
           <ul>
               <li><b>Email:</b>     <a href="mailto:nikunjnehu@gmail.com">nikunjnehu@gmail.com</a></li>
@@ -140,7 +127,7 @@ const TerminalView = ({ onClose }: TerminalViewProps) => {
         },
         projects: () => {
           let projectList = `<div class="output-table">`;
-          USER_DATA.projects.forEach(p => {
+          projectsData.forEach(p => {
             projectList += `<div class="table-row"><div class="table-col-1">${p.name}</div><div class="table-col-2">${p.description}</div></div>`;
           });
           projectList += `</div>`;
@@ -162,7 +149,7 @@ const TerminalView = ({ onClose }: TerminalViewProps) => {
           return `Opening Instagram...`;
         },
         exit: () => {
-          onClose();
+          navigate('/');
           return `Exiting terminal...`;
         },
         clear: () => {
@@ -286,7 +273,7 @@ const TerminalView = ({ onClose }: TerminalViewProps) => {
       document.body.style.overflow = 'auto';
       cleanup();
     };
-  }, [onClose]);
+  }, [navigate]);
 
   return (
     <div className="fixed inset-0 z-[100] bg-[#16141F]">
