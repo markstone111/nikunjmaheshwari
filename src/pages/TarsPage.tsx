@@ -9,18 +9,68 @@ interface ChatMessage {
 }
 
 export default function TarsPage() {
-  const [messages, setMessages] = useState<ChatMessage[]>([{
-    id: 'msg-0',
-    role: 'model',
-    content: "TARS ONLINE. I AM SYNCED WITH NIKUNJ'S BRAIN. WHAT DO YOU WANT TO KNOW?"
-  }]);
+  // Determine initial state from SessionStorage if it exists
+  const getInitialMessages = (): ChatMessage[] => {
+    const saved = sessionStorage.getItem('tars_history');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error("Failed to parse history");
+      }
+    }
+    return [{
+      id: 'msg-0',
+      role: 'model',
+      content: "TARS ONLINE. I AM SYNCED WITH NIKUNJ'S BRAIN. WHAT DO YOU WANT TO KNOW?"
+    }];
+  };
+
+  const [messages, setMessages] = useState<ChatMessage[]>(getInitialMessages);
   
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [mode, setMode] = useState<'TARS' | 'CASE'>('TARS');
   const [isRecording, setIsRecording] = useState(false);
+  const [rateLimitRemaining, setRateLimitRemaining] = useState<number>(15);
+  const [speechError, setSpeechError] = useState<string | null>(null);
   
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
+
+  // Sync state to sessionStorage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem('tars_history', JSON.stringify(messages));
+    scrollToBottom();
+  }, [messages]);
+
+  // Robust Speech Recognition Initialization
+  useEffect(() => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      
+      recognition.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        setInputValue(prev => prev + (prev.endsWith(' ') ? '' : ' ') + transcript);
+        setIsRecording(false);
+      };
+
+      recognition.onerror = (event: any) => {
+        console.error("Speech Rec Error:", event.error);
+        setSpeechError("Microphone access denied or unsupported.");
+        setIsRecording(false);
+      };
+      
+      recognition.onend = () => {
+        setIsRecording(false);
+      };
+
+      recognitionRef.current = recognition;
+    }
+  }, []);
 
   // Auto-scroll to bottom of chat
   const scrollToBottom = () => {
@@ -56,23 +106,30 @@ export default function TarsPage() {
   }
 
   const toggleRecording = () => {
-    if (!recognition) {
-      alert("Your browser does not support Speech Recognition.");
+    if (!recognitionRef.current) {
+      alert("Your browser does not support Speech Recognition. Use Chrome/Edge desktop.");
       return;
     }
     
+    setSpeechError(null);
+    
     if (isRecording) {
-      recognition.stop();
+      recognitionRef.current.stop();
       setIsRecording(false);
     } else {
-      recognition.start();
-      setIsRecording(true);
+      try {
+        recognitionRef.current.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error("Recording start error", err);
+        setIsRecording(false);
+      }
     }
   };
 
   const handleSendMessage = async () => {
     const trimmedMessage = inputValue.trim();
-    if (!trimmedMessage || isLoading) return;
+    if (!trimmedMessage || isLoading || rateLimitRemaining === 0) return;
 
     // Create user message
     const userMsg: ChatMessage = {
@@ -101,6 +158,11 @@ export default function TarsPage() {
       });
 
       const data = await response.json();
+
+      // Read Vercel KV rate limit data if provided
+      if (data.remaining !== undefined) {
+        setRateLimitRemaining(data.remaining);
+      }
 
       if (response.ok) {
         setMessages(prev => [...prev, {
@@ -135,9 +197,13 @@ export default function TarsPage() {
         <div className="w-full bg-black text-white px-6 py-4 flex flex-col md:flex-row justify-between items-center border-b-4 border-black">
           <div className="flex items-center gap-4">
             <HardDrive className="text-brutal-green animate-pulse" />
-            <h1 className="text-3xl font-black uppercase tracking-widest">
+            <h1 className="text-2xl md:text-3xl font-black uppercase tracking-widest hidden sm:block">
               SYSTEM CONSOLE
             </h1>
+            {/* Visual Rate Limit Block */}
+            <div className={`text-xs md:text-sm font-black px-3 py-1 border-2 border-white ${rateLimitRemaining > 5 ? 'bg-brutal-green text-black' : 'bg-brutal-pink text-black animate-pulse'}`}>
+              QUOTA: {rateLimitRemaining}/15
+            </div>
           </div>
           
           {/* Mode Switcher */}
@@ -193,6 +259,13 @@ export default function TarsPage() {
                </div>
             </motion.div>
           )}
+          {speechError && (
+             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center w-full">
+               <div className="p-2 border-2 border-black bg-brutal-pink text-black font-black text-sm shadow-brutal-sm">
+                 {speechError}
+               </div>
+             </motion.div>
+          )}
           <div ref={chatEndRef} />
         </div>
 
@@ -219,10 +292,12 @@ export default function TarsPage() {
           
           <button 
              onClick={handleSendMessage}
-             disabled={isLoading || !inputValue.trim()}
-             className="p-4 bg-black text-white hover:bg-brutal-green hover:text-black border-4 border-black font-black uppercase shadow-[4px_4px_0_rgba(0,0,0,1)] disabled:opacity-50 disabled:hover:bg-black disabled:hover:text-white hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center gap-2"
+             disabled={isLoading || !inputValue.trim() || rateLimitRemaining === 0}
+             className={`p-4 border-4 border-black font-black uppercase shadow-[4px_4px_0_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center gap-2
+               ${rateLimitRemaining === 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-black text-white hover:bg-brutal-green hover:text-black'}
+             `}
           >
-            <span className="hidden md:block">EXECUTE</span>
+            <span className="hidden md:block">{rateLimitRemaining === 0 ? 'LOCKED' : 'EXECUTE'}</span>
             <Send />
           </button>
         </div>
