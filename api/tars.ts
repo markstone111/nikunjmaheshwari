@@ -6,7 +6,7 @@ export const config = {
 };
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY!;
-const RATE_LIMIT_COUNT = 15; 
+const RATE_LIMIT_COUNT = 50; 
 
 
 // We will inject the portfolio context directly. 
@@ -49,7 +49,7 @@ export default async function handler(req: Request) {
 
   try {
     const ip = req.headers.get('x-forwarded-for') || '127.0.0.1'; 
-    const ratelimitKey = `tars_ratelimit_${ip}`;
+    const ratelimitKey = `tars_ratelimit_v2_${ip}`;
     
     let currentCount = 1;
     try {
