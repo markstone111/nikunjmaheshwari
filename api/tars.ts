@@ -133,7 +133,13 @@ export default async function handler(req: Request) {
     }
 
     const data = await openRouterRes.json();
-    const responseText = data.choices[0]?.message?.content || "CONNECTION LOST.";
+
+    if (data.error) {
+      console.error("OpenRouter Returned Error Payload:", data.error);
+      return new Response(JSON.stringify({ error: `Provider Error: ${data.error.message || JSON.stringify(data.error)}` }), { status: 500 });
+    }
+
+    const responseText = data.choices?.[0]?.message?.content || "CONNECTION LOST.";
 
     return new Response(JSON.stringify({ response: responseText, remaining: Math.max(0, RATE_LIMIT_COUNT - currentCount) }), {
       status: 200,
