@@ -32,7 +32,7 @@ export default function TarsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [mode, setMode] = useState<'TARS' | 'CASE'>('TARS');
   const [isRecording, setIsRecording] = useState(false);
-  const [rateLimitRemaining, setRateLimitRemaining] = useState<number>(15);
+  const [rateLimitRemaining, setRateLimitRemaining] = useState<number>(50);
   const [speechError, setSpeechError] = useState<string | null>(null);
   
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -144,15 +144,14 @@ export default function TarsPage() {
 
     try {
       // Send to our Vercel Serverless Function
-      const augmentedMessage = `(MODE: ${mode}) ${trimmedMessage}`;
-      
       const response = await fetch('/api/tars', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: augmentedMessage,
+          message: trimmedMessage,
+          mode: mode,
           history: messages.slice(1) // exclude initial greeting from strict history structure
         }),
       });
@@ -202,7 +201,7 @@ export default function TarsPage() {
             </h1>
             {/* Visual Rate Limit Block */}
             <div className={`text-xs md:text-sm font-black px-3 py-1 border-2 border-white ${rateLimitRemaining > 5 ? 'bg-brutal-green text-black' : 'bg-brutal-pink text-black animate-pulse'}`}>
-              QUOTA: {rateLimitRemaining}/15
+              QUOTA: {rateLimitRemaining}/50
             </div>
           </div>
           

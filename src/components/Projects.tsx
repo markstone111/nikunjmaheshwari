@@ -75,26 +75,20 @@ import { Link } from 'react-router-dom';
 
 
 const projects = [
+  
   {
     title: 'Should_I_Bunk',
-    description: 'Decide smartly whether to attend or skip class with AI-backed predictions.',
+    description: 'Stop guessing and start optimizing. Should I Bunk? bridges the gap between machine learning and daily student survival. By feeding real-world constraints—like professor strictness, test proximity, and current attendance thresholds—into a Python-based logistic regression model, this app delivers real-time, AI-backed verdicts on whether you can safely skip a lecture.',
     techStack: ['React Native', 'Python', 'Typescript', 'Logistic Regression'],
     github: 'https://github.com/markstone111/Should_I_Bunk',
     demo: 'https://drive.google.com/file/d/1OmRz84W2W23bQBrnfx1Ubk9teXq3lh22/view?usp=drivesdk'
   },
   {
-    title: 'ChatSphere',
-    description: 'An AI chatbot that chats, understands, and learns — built with NLP & ML.',
-    techStack: ['Python', 'TensorFlow', 'Streamlit', 'GTTS', 'Scikit-learn'],
-    github: 'https://github.com/markstone111/side_end.dev/tree/main/ChatBot(Intent-Based)',
-    demo: 'https://github.com/markstone111/side_end.dev/tree/main/ChatBot(Intent-Based)'
-  },
-  {
-    title: 'Satya',
-    description: 'Fact-checking platform with a browser extension to detect fake news & fraud, auto-reporting suspicious cases.',
-    techStack: ['JavaScript', 'Django', 'HTML','Tailwind CSS'],
-    github: "https://github.com/markstone111/Satya",
-    demo: "https://satya-one.vercel.app/"
+    title: 'CivicResolve',
+    description: 'A large-scale civic issue reporting system that includes multilingual support, real-time notifications using FCM, and a dedicated admin dashboard. The system integrates a custom machine learning model to estimate issue severity and includes offline capabilities for disaster scenarios. ',
+    techStack: ['React Native', 'Expo Router', 'Node.js', 'React-Native-Maps', 'Firestore', 'Supabase WebSockets', 'Firebase Auth', 'Firebase Cloud Messaging'],
+    github: "https://github.com/markstone111/Civic_Resolve",
+    demo: 'https://drive.google.com/file/d/1OmRz84W2W23bQBrnfx1Ubk9teXq3lh22/view?usp=drivesdk'
   },
   {
     title: 'Will_They_Hire_Me (in progress)',
@@ -104,27 +98,11 @@ const projects = [
     demo: null
   },
   {
-    title: 'ByteCanvas (in progress)',
-    description: 'A next-gen online IDE with live previews and built-in AI coding assistance.',
-    techStack: ['TypeScript', 'Next.js', 'Firebase','Next Auth','Web Sockets','Web Container'],
-    github: "https://github.com/markstone111/ByteCanvas",
-    demo: null
-  },
-    
-  // {
-  //   title: 'IncogniChat (in progress)',
-  //   description: 'Anonymous chatrooms with AI support, moderation, and safe community features.',
-  //   techStack: ['TypeScript', 'Next.js', 'Firebase','Firebase Auth'],
-  //   github: null,
-  //   demo: null
-  // },
-
-  {
-    title: 'ShopSwift',
-    description: 'A modern eCommerce app with sleek UI, secure payments & powerful windows app for admin tools.',
-    techStack: ['Dart', 'Flutter', 'Firebase','Node.js','APIs handling', 'Payment Gateway'],
-    github: null,
-    demo: null
+    title: 'Satya',
+    description: 'Fact-checking platform with a browser extension to detect fake news & fraud, auto-reporting suspicious cases.',
+    techStack: ['JavaScript', 'Django', 'HTML','Tailwind CSS'],
+    github: "https://github.com/markstone111/Satya",
+    demo: "https://satya-one.vercel.app/"
   },
   {
     title: 'PoseVision',
@@ -133,42 +111,6 @@ const projects = [
     github: 'https://github.com/markstone111/side_end.dev/tree/main/human-pose-estimation',
     demo: 'https://human-pose.streamlit.app/'
   },
-  // {
-  //   title: 'TimeTeller',
-  //   description: 'Auto-alarms your tasks — enter a task & time, the alarm sets itself.',
-  //   techStack: ['Kotlin','Coroutine','Jetpack DataStore'],
-  //   github: null,
-  //   demo: null
-  // },
-  {
-    title: 'Athletica (in progress)',
-    description: 'Connecting athletes & coaches on one platform — for networking & growth.',
-    techStack: ['Dart', 'Flutter', 'Firebase','Node.js'],
-    github: null,
-    demo: null
-  },
-  {
-    title: 'TaskHive',
-    description: 'A smart task manager with quotes, search, and reminders to keep you focused.',
-    techStack: ['Kotlin', 'Jetpack', 'Room Database'],
-    github: null,
-    demo: null
-  },
-  // {
-  //   title: 'PortFolio+',
-  //   description: 'A sleek, interactive portfolio with dark mode & smooth animations.',
-  //   techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-  //   github: "https://github.com/markstone111/nikunjmaheshwari",
-  //   demo: 'https://nikunjmaheshwari.vercel.app/'
-  // },
-  // {  
-  //   title: 'Convertly',
-  //   description: 'All-in-one unit converter with API integration, designed with Jetpack Compose.',
-  //   techStack: ['Kotlin', 'Android SDK', 'Jetpack Compose'],
-  //   github: null,
-  //   demo: null
-  // },
-  
 ];
 
 

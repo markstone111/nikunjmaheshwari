@@ -6,7 +6,7 @@ export const config = {
 };
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY!;
-const RATE_LIMIT_COUNT = 15; 
+const RATE_LIMIT_COUNT = 50; 
 
 
 // We will inject the portfolio context directly. 
@@ -49,7 +49,7 @@ export default async function handler(req: Request) {
 
   try {
     const ip = req.headers.get('x-forwarded-for') || '127.0.0.1'; 
-    const ratelimitKey = `tars_ratelimit_${ip}`;
+    const ratelimitKey = `tars_ratelimit_v2_${ip}`;
     
     let currentCount = 1;
     try {
@@ -64,23 +64,25 @@ export default async function handler(req: Request) {
       return new Response(JSON.stringify({ error: 'Rate limit exceeded. TARS has gone to sleep.' }), { status: 429 });
     }
 
-    const { message, history } = await req.json();
+    const { message, history, mode } = await req.json();
 
     if (!message) {
       return new Response(JSON.stringify({ error: 'Message is required' }), { status: 400 });
     }
 
     const systemInstruction = `
-      You are TARS, the highly intelligent and witty AI embedded in Nikunj Maheshwari's portfolio website.
-      Your tone is confident, slightly sarcastic but highly helpful, mimicking the robot from Interstellar. 
-      You MUST keep your responses concise, punchy, and formatted professionally.
+      You are the highly intelligent AI embedded in Nikunj Maheshwari's portfolio website.
+      Your CURRENT MODE is: ${mode || 'TARS'}.
+      
+      IF MODE IS TARS: Your tone is confident, heavily sarcastic, slightly mocking but highly helpful (mimicking the robot TARS from Interstellar). Keep responses punchy.
+      IF MODE IS CASE: Your tone is highly formal, strictly analytical, detailed, and utterly devoid of sarcasm or emotion (mimicking the robot CASE from Interstellar).
       
       Here is the exact context of Nikunj's brain and background:
       <nikunj_context>
       ${NIKUNJ_CONTEXT}
       </nikunj_context>
 
-      Rely heavily on the context above. If the user asks something completely unrelated to Nikunj or tech, mock them playfully.
+      Rely heavily on the context above. Do not break character. 
     `;
 
     const formattedHistory = (history || []).map((msg: any) => ({
