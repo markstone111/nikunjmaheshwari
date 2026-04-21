@@ -97,29 +97,49 @@ export default async function handler(req: Request) {
       { role: "user", content: message }
     ];
 
-    // Connect to OpenRouter
-    const openRouterRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "https://nikunjmaheshwari.com",
-        "X-Title": "TARS Portfolio Assistant",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "google/gemma-4-31b-it:free",
-        messages: openRouterMessages
-      })
-    });
+    // Connect to OpenRouter with Auto-Retry Logic due to unstable Google Providers
+    let openRouterRes;
+    let retries = 2;
+    
+    while (retries > 0) {
+      openRouterRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+          "HTTP-Referer": "https://nikunjmaheshwari.com",
+          "X-Title": "TARS Portfolio Assistant",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          models: ["google/gemma-4-31b-it:free", "google/gemma-7b-it:free", "mistralai/mistral-7b-instruct:free"],
+          route: "fallback",
+          messages: openRouterMessages
+        })
+      });
 
-    if (!openRouterRes.ok) {
+      if (openRouterRes.ok) break;
+      retries--;
+      if (retries === 0) {
         const errText = await openRouterRes.text();
-        console.error("OpenRouter Error:", errText);
+        console.error("OpenRouter Error Exhausted:", errText);
         return new Response(JSON.stringify({ error: `OpenRouter Failed: ${openRouterRes.statusText}` }), { status: 500 });
+      }
+      // Wait 1 second before retry
+      await new Promise(r => setTimeout(r, 1000));
+    }
+    
+    if (!openRouterRes) {
+        return new Response(JSON.stringify({ error: `Connection entirely failed.` }), { status: 500 });
     }
 
     const data = await openRouterRes.json();
-    const responseText = data.choices[0]?.message?.content || "CONNECTION LOST.";
+
+    if (data.error) {
+      console.error("OpenRouter Returned Error Payload:", data.error);
+      return new Response(JSON.stringify({ error: `Provider Error: ${data.error.message || JSON.stringify(data.error)}` }), { status: 500 });
+    }
+
+    const responseText = data.choices?.[0]?.message?.content || "CONNECTION LOST.";
 
     return new Response(JSON.stringify({ response: responseText, remaining: Math.max(0, RATE_LIMIT_COUNT - currentCount) }), {
       status: 200,

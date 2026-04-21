@@ -9,11 +9,20 @@ import SideNavbar from './components/SideNavbar';
 import ThemeToggle from './components/ThemeToggle';
 import CommandPalette from './components/CommandPalette';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import TerminalPage from './pages/TerminalPage';
 import ProjectsPage from './pages/ProjectsPage';
 import BlogsPage from './pages/BlogsPage';
 import ObsessionsPage from './pages/ObsessionsPage';
 import TarsPage from './pages/TarsPage';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function HomePage() {
   return (
@@ -34,6 +43,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-brutal-bg dark:bg-tars-board flex">
+      <ScrollToTop />
       {/* Global Components */}
       <ThemeToggle />
       <SideNavbar />
