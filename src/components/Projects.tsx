@@ -79,7 +79,7 @@ const projects = [
   {
     title: 'Should_I_Bunk',
     description: 'Stop guessing and start optimizing. Should I Bunk? bridges the gap between machine learning and daily student survival. By feeding real-world constraints—like professor strictness, test proximity, and current attendance thresholds—into a Python-based logistic regression model, this app delivers real-time, AI-backed verdicts on whether you can safely skip a lecture.',
-    techStack: ['React Native', 'Python', 'Typescript', 'Logistic Regression'],
+    techStack: ['React Native', 'Expo Router', 'Python Flask', 'Pandas', 'NumPy', 'Typescript', 'Logistic Regression', 'Render'],
     github: 'https://github.com/markstone111/Should_I_Bunk',
     demo: 'https://drive.google.com/file/d/1OmRz84W2W23bQBrnfx1Ubk9teXq3lh22/view?usp=drivesdk'
   },
@@ -92,24 +92,10 @@ const projects = [
   },
   {
     title: 'Will_They_Hire_Me (in progress)',
-    description: 'An AI-driven mock interview platform with voice support for realistic practice.',
+    description: "Will They Hire Me? is an AI-driven mock interview platform that pressure-tests your skills before the real thing. Built with Next.js, TypeScript, and Firebase, it features real-time voice support for realistic practice in high-stakes scenarios. Get instant, AI-powered feedback in an ultra-fast, responsive training ground designed to turn rejections into offers.",
     techStack: ['TypeScript','Next.js', 'Firebase', 'Vapi','Firebase Auth'],
     github: "https://github.com/markstone111/will_they_hire_me",
     demo: null
-  },
-  {
-    title: 'Satya',
-    description: 'Fact-checking platform with a browser extension to detect fake news & fraud, auto-reporting suspicious cases.',
-    techStack: ['JavaScript', 'Django', 'HTML','Tailwind CSS'],
-    github: "https://github.com/markstone111/Satya",
-    demo: "https://satya-one.vercel.app/"
-  },
-  {
-    title: 'PoseVision',
-    description: 'AI-powered pose detection using OpenCV & MediaPipe, live and accurate.',
-    techStack: ['Python', 'OpenCV', 'MediaPipe', 'Streamlit'],
-    github: 'https://github.com/markstone111/side_end.dev/tree/main/human-pose-estimation',
-    demo: 'https://human-pose.streamlit.app/'
   },
 ];
 

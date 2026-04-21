@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mic, Square, Zap, HardDrive } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface ChatMessage {
   id: string;
@@ -37,6 +38,18 @@ export default function TarsPage() {
   
   const chatEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Read State Query safely
+  useEffect(() => {
+    if (location.state && location.state.query) {
+      setInputValue(location.state.query);
+      
+      // Clear React Router state cleanly without breaking React 18 StrictMode
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
 
   // Sync state to sessionStorage whenever it changes
   useEffect(() => {
