@@ -144,15 +144,14 @@ export default function TarsPage() {
 
     try {
       // Send to our Vercel Serverless Function
-      const augmentedMessage = `(MODE: ${mode}) ${trimmedMessage}`;
-      
       const response = await fetch('/api/tars', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: augmentedMessage,
+          message: trimmedMessage,
+          mode: mode,
           history: messages.slice(1) // exclude initial greeting from strict history structure
         }),
       });
