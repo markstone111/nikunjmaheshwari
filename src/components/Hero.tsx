@@ -208,7 +208,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-4xl font-bold text-brutal-green mb-4 md:mb-8 stroke-black drop-shadow-md py-1 md:py-2"
+            className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 md:mb-8 stroke-black drop-shadow-md py-1 md:py-2"
           >
             SOFTWARE ENGINEER
           </motion.p>
@@ -250,9 +250,9 @@ const Hero = () => {
           >
             {/* Using the avatar you uploaded */}
             <img 
-              src="/hero_section_pic.png" 
+              src="/hero_section_pic.jpeg" 
               alt="Nikunj Avatar" 
-              className="w-full h-full object-cover  mix-blend-normal hover:mix-blend-luminosity transition-all duration-500" 
+              className="w-full h-full object-cover  mix-blend-normal hover:mix-blend-darken transition-all duration-500" 
             />
           </motion.div>
 
@@ -294,8 +294,6 @@ const Hero = () => {
           <Mail size={24} />
         </a>
       </motion.div>
-
-      {/* Overlay removed. Terminal logic is now handled in App.tsx / TerminalRoute */}
     </section>
   );
 };
