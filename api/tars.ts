@@ -68,9 +68,9 @@ export default async function handler(req: Request) {
     try {
       currentCount = await kv.incr(ratelimitKey);
       if (currentCount === 1) await kv.expire(ratelimitKey, 60 * 60 * 24); 
-    } catch {
+    } catch (err: any) {
       // Fallback if KV store is unreachable during local testing
-      console.warn("Vercel KV unreachable, bypassing rate limit.");
+      console.warn("Vercel KV unreachable, bypassing rate limit. Error Details:", err?.message || err);
     }
     
     if (currentCount > RATE_LIMIT_COUNT) {
