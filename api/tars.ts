@@ -61,7 +61,7 @@ export default async function handler(req: Request) {
   }
 
   try {
-    const ip = req.headers.get('x-forwarded-for') || '127.0.0.1'; 
+    const ip = req.headers.get('x-real-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1'; 
     const ratelimitKey = `tars_ratelimit_v2_${ip}`;
     
     let currentCount = 1;
