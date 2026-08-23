@@ -15,6 +15,10 @@ import ProjectsPage from './pages/ProjectsPage';
 import BlogsPage from './pages/BlogsPage';
 import ObsessionsPage from './pages/ObsessionsPage';
 import TarsPage from './pages/TarsPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import DevelopersPage from './pages/DevelopersPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -58,6 +62,11 @@ function App() {
           <Route path="/obsessions" element={<ObsessionsPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/tars" element={<TarsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/developers" element={<DevelopersPage />} />
+          <Route path="/docs" element={<DevelopersPage />} />
         </Routes>
         
         {/* Global Footer (Hidden on Terminal and TARS) */}

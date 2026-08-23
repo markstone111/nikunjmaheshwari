@@ -1,0 +1,23 @@
+{
+  "name": "nikunj-cli",
+  "version": "1.0.0",
+  "description": "Official CLI tool to interact with Nikunj Maheshwari's portfolio API.",
+  "main": "index.js",
+  "bin": {
+    "nikunj": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "nikunj",
+    "portfolio",
+    "api"
+  ],
+  "author": "Nikunj Maheshwari",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

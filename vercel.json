@@ -1,8 +1,16 @@
 {
+  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/terminal", "destination": "/index.html" },
+    { "source": "/projects", "destination": "/index.html" },
+    { "source": "/obsessions", "destination": "/index.html" },
+    { "source": "/blogs", "destination": "/index.html" },
+    { "source": "/tars", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/developers", "destination": "/index.html" },
+    { "source": "/docs", "destination": "/index.html" },
+    { "source": "/((?!api/|assets/|vite.svg|img1.jpg|sitemap.xml|robots.txt|llms.txt|llms-full.txt|openapi.json).*)", "destination": "/api/404" }
   ]
 }
