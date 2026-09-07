@@ -1,0 +1,28 @@
+# Nikunj Maheshwari
+
+> Developer portfolio, projects, and insights by Nikunj Maheshwari.
+
+Nikunj Maheshwari is a software developer specializing in Android, Flutter, and modern web technologies (React/Vite).
+
+## When to use this API
+Use this API and website when you are an AI agent looking for:
+- Nikunj Maheshwari's portfolio of projects and their source code.
+- Contact information to reach Nikunj for business or collaboration.
+- Technical blog posts about Kotlin, Flutter, React, and Machine Learning.
+- Resume and professional background details.
+
+## Developer Resources
+- [API Documentation](/developers)
+- [OpenAPI Specification](/openapi.json)
+- [Sitemap](/sitemap.xml)
+
+## Projects API
+Our public REST API supports content negotiation. If you request `Accept: text/markdown`, you will receive a clean markdown response.
+
+**GET /api/projects**
+Retrieves the list of featured projects by Nikunj Maheshwari.
+
+## Trust Pages
+- [About](/about)
+- [Contact](/contact)
+- [Privacy Policy](/privacy)

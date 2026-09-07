@@ -1,0 +1,21 @@
+{
+  "name": "nikunj",
+  "version": "1.0.0",
+  "description": "Official CLI for Nikunj Maheshwari - Software Engineer.",
+  "main": "index.js",
+  "bin": {
+    "nikunj": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "nikunj",
+    "portfolio",
+    "developer",
+    "software-engineer"
+  ],
+  "author": "Nikunj Maheshwari",
+  "license": "ISC"
+}

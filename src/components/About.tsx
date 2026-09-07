@@ -257,9 +257,11 @@
 
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
+import { Terminal, Copy, Check } from "lucide-react";
 
 const allSkills = [
   { name: "C", logo: "/logos/c.svg" },
@@ -297,11 +299,27 @@ const tarsQuestions = [
   'What makes him different?'
 ];
 
+const cliCommands = [
+  'npx nikunj about',
+  'npx nikunj projects',
+  'npx nikunj contact',
+  'npx nikunj resume'
+];
+
 const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedCmd(text);
+    setTimeout(() => {
+      setCopiedCmd(null);
+    }, 2000);
+  };
 
   return (
     <section id="about" className="py-20 bg-brutal-bg dark:bg-tars-board font-sans overflow-hidden">
@@ -322,17 +340,59 @@ const About = () => {
              {/* Left: Core Module */}
              <motion.div 
                whileHover={{ translateY: -5 }}
-               className="md:w-1/3 flex border-4 border-black bg-brutal-yellow shadow-brutal p-8 flex-col items-center justify-center gap-6"
+               className="md:w-1/3 flex border-4 border-black bg-brutal-yellow shadow-brutal p-6 flex-col items-center justify-between gap-5"
              >
-                <div className="w-full flex justify-between uppercase font-black text-xs md:text-sm tracking-widest border-b-4 border-black pb-2 mb-2 text-black">
+                <div className="w-full flex justify-between uppercase font-black text-xs md:text-sm tracking-widest border-b-4 border-black pb-2 text-black">
                    <span>Core Module</span>
                    <span>UID: 001</span>
                 </div>
                 <img
                   src="/hero_section_pic_2_copy.png"
                   alt="Nikunj Maheshwari"
-                  className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-black shadow-[4px_4px_0_rgba(0,0,0,1)] hover:scale-105 transition-transform"
+                  className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-black shadow-[4px_4px_0_rgba(0,0,0,1)] hover:scale-105 transition-transform shrink-0"
                 />
+
+                {/* Summon in Terminal Box */}
+                <div className="w-full bg-black text-white p-4 border-3 border-black shadow-[4px_4px_0_rgba(0,0,0,1)] flex flex-col gap-2.5">
+                  <div className="flex items-center justify-between border-b border-gray-800 pb-2">
+                    <div className="flex items-center gap-1.5">
+                      <Terminal className="w-4 h-4 text-brutal-green" />
+                      <span className="font-black text-[11px] uppercase tracking-wider text-brutal-green font-mono">Terminal CLI</span>
+                    </div>
+                    {copiedCmd && (
+                      <span className="text-[10px] font-mono bg-brutal-green text-black px-1.5 py-0.5 font-black uppercase">
+                        COPIED!
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="font-bold text-xs text-gray-300">
+                    You can summon me in your terminal:
+                  </p>
+
+                  <div className="flex flex-col gap-1.5 w-full">
+                    {cliCommands.map((cmd) => (
+                      <button
+                        key={cmd}
+                        type="button"
+                        onClick={() => copyToClipboard(cmd)}
+                        className="group flex items-center justify-between bg-[#141414] hover:bg-[#202020] border border-gray-700 hover:border-brutal-green px-2.5 py-1.5 transition-all text-left w-full cursor-pointer rounded-none"
+                        title={`Click to copy: ${cmd}`}
+                      >
+                        <span className="text-[11px] sm:text-xs font-mono text-gray-200 group-hover:text-brutal-green transition-colors truncate font-semibold">
+                          $ {cmd}
+                        </span>
+                        <span className="p-0.5 text-gray-400 group-hover:text-brutal-green transition-colors shrink-0 ml-1.5">
+                          {copiedCmd === cmd ? (
+                            <Check className="w-3.5 h-3.5 text-brutal-green" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100" />
+                          )}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
              </motion.div>
 
              {/* Right: Primary Structure + Input/Output */}

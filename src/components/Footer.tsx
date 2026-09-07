@@ -71,10 +71,18 @@ export default function Footer() {
       </div>
       
       {/* 3. Bottom Minimal Bar */}
-      <div className="w-full border-t-4 border-black bg-white dark:bg-tars-board py-6 flex justify-center items-center">
-        <span className="font-bold text-lg uppercase tracking-wider text-black dark:text-white">
-          © {new Date().getFullYear()} Nikunj Maheshwari. Built with Brutalism.
-        </span>
+      <div className="w-full border-t-4 border-black bg-white dark:bg-tars-board py-6 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="font-bold text-lg uppercase tracking-wider text-black dark:text-white">
+            © {new Date().getFullYear()} Nikunj Maheshwari. Built with Brutalism.
+          </span>
+          <div className="flex gap-4 font-bold text-sm md:text-base text-black dark:text-white">
+            <a href="/developers" className="hover:text-brutal-green transition-colors">Developers/API</a>
+            <a href="/about" className="hover:text-brutal-green transition-colors">About</a>
+            <a href="/contact" className="hover:text-brutal-green transition-colors">Contact</a>
+            <a href="/privacy" className="hover:text-brutal-green transition-colors">Privacy Policy</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
