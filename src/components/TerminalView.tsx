@@ -35,7 +35,7 @@ const TerminalView = () => {
               <li><b>GitHub:</b>    <a href="https://github.com/markstone111" target="_self">github.com/markstone111</a></li>
           </ul>`,
         repo: "https://github.com/markstone111/side_end.dev",
-        resume: "https://drive.google.com/file/d/1IqyeYW01uxvyiuK7svy4uhb811MhMEbp/view?usp=sharing",
+        resume: "https://drive.google.com/file/d/1D--DFjIA2_KUhsAAtP9jfRqZZqohmiJT/view",
         insta: "https://instagram.com/nikunj_maheshwari_",
         neofetch: {
           art: `@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
