@@ -77,7 +77,9 @@ export default function DevelopersPage() {
               We provide a lightweight CLI tool to quickly query the portfolio API from your terminal.
             </p>
             <div className="bg-gray-900 text-gray-100 p-3 rounded border-2 border-gray-700 text-sm overflow-x-auto">
-              <code>npm install -g nikunj-cli</code><br/>
+              <code>npx nikunj projects</code><br/>
+              <span className="text-gray-400"># or install globally:</span><br/>
+              <code>npm install -g nikunj</code><br/>
               <code>nikunj projects</code>
             </div>
           </div>

@@ -1,0 +1,40 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": "tars-ai",
+      "name": "T.A.R.S AI Assistant",
+      "description": "A generative AI assistant built with LLMs and modern web tech.",
+      "technologies": ["React", "TypeScript", "LLMs"],
+      "url": "https://nikunjmaheshwari.in/tars"
+    },
+    {
+      "id": "should-i-bunk",
+      "name": "Should_I_Bunk",
+      "description": "Mobile app that helps students decide whether to attend a class based on predictive factors.",
+      "technologies": ["React Native", "Python", "TypeScript"],
+      "url": "https://github.com/markstone111/Should_I_Bunk"
+    },
+    {
+      "id": "human-pose",
+      "name": "Human Pose Estimation",
+      "description": "Real-time human pose estimation web application using OpenCV and MediaPipe.",
+      "technologies": ["Python", "OpenCV", "MediaPipe", "Streamlit"],
+      "url": "https://human-pose.streamlit.app/"
+    },
+    {
+      "id": "chatbot",
+      "name": "NLP-Powered ChatBot",
+      "description": "An intent-based chatbot created using Natural Language Processing.",
+      "technologies": ["Python", "TensorFlow", "Streamlit"],
+      "url": "https://github.com/markstone111/side_end.dev"
+    },
+    {
+      "id": "portfolio",
+      "name": "Developer Portfolio",
+      "description": "Neo-brutalist interactive developer portfolio.",
+      "technologies": ["React", "Vite", "Tailwind CSS"],
+      "url": "https://nikunjmaheshwari.in"
+    }
+  ]
+}

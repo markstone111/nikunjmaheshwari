@@ -234,6 +234,14 @@ const Hero = () => {
             <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="brutal-btn bg-white dark:bg-tars-gray text-black dark:text-white px-8 py-3 text-lg border-2 border-black text-center w-full sm:w-auto">
               Connect
             </a>
+            <a 
+              href="https://drive.google.com/file/d/1IqyeYW01uxvyiuK7svy4uhb811MhMEbp/view?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="brutal-btn bg-brutal-yellow text-black px-8 py-3 text-lg border-2 border-black text-center w-full sm:w-auto"
+            >
+              Resume
+            </a>
           </motion.div>
         </motion.div>
 
