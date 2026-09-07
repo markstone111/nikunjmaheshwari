@@ -235,7 +235,7 @@ const Hero = () => {
               Connect
             </a>
             <a 
-              href="https://drive.google.com/file/d/1IqyeYW01uxvyiuK7svy4uhb811MhMEbp/view?usp=sharing" 
+              href="https://drive.google.com/file/d/1D--DFjIA2_KUhsAAtP9jfRqZZqohmiJT/view" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="brutal-btn bg-brutal-yellow text-black px-8 py-3 text-lg border-2 border-black text-center w-full sm:w-auto"

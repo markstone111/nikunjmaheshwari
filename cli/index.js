@@ -113,7 +113,7 @@ if (command === 'projects') {
   console.log("GitHub:  https://github.com/markstone111\n");
 } else if (command === 'resume') {
   console.log("\nNikunj's Resume:");
-  console.log("https://drive.google.com/file/d/1IqyeYW01uxvyiuK7svy4uhb811MhMEbp/view?usp=sharing\n");
+  console.log("https://drive.google.com/file/d/1D--DFjIA2_KUhsAAtP9jfRqZZqohmiJT/view\n");
 } else if (command === 'contact') {
   console.log("\nConnect with Nikunj:");
   console.log("Email:    contact@nikunjmaheshwari.xyz");
