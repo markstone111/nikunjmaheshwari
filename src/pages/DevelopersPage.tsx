@@ -22,10 +22,10 @@ export default function DevelopersPage() {
             <div className="bg-gray-900 text-gray-100 p-4 rounded border-2 border-gray-700 overflow-x-auto">
               <code>
                 <span className="text-green-400"># Fetch all projects in JSON format</span><br />
-                curl -X GET https://nikunjmaheshwari.xyz/api/projects<br /><br />
+                curl -X GET https://nikunjmaheshwari.in/api/projects<br /><br />
                 
                 <span className="text-green-400"># Fetch all projects in Markdown format (Content Negotiation)</span><br />
-                curl -H "Accept: text/markdown" https://nikunjmaheshwari.xyz/api/projects
+                curl -H "Accept: text/markdown" https://nikunjmaheshwari.in/api/projects
               </code>
             </div>
           </div>
