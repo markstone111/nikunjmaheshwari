@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Command } from 'cmdk';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, FolderGit2, User, Mail, Terminal, Bot } from 'lucide-react';
+import { Home, FolderGit2, User, Mail, Terminal, Bot, Award } from 'lucide-react';
 import '../command-palette.css';
 
 export default function CommandPalette() {
@@ -63,6 +63,9 @@ export default function CommandPalette() {
                 </Command.Item>
                 <Command.Item onSelect={() => runCommand(() => window.location.hash = 'contact')} className="cmdk-item">
                   <Mail className="mr-2 w-4 h-4" /> Contact
+                </Command.Item>
+                <Command.Item onSelect={() => runCommand(() => navigate('/certifications'))} className="cmdk-item">
+                  <Award className="mr-2 w-4 h-4" /> Certifications
                 </Command.Item>
               </Command.Group>
 
