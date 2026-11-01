@@ -142,7 +142,7 @@ export const projectsData: Project[] = [
     ],
     techStack: ["Python", "OpenCV", "MediaPipe"],
     backgroundColor: "bg-brutal-yellow",
-    imageUrl: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/project_thumbnail/humanpose.png",
     liveLink: "https://human-pose.streamlit.app/",
     githubLink: "https://github.com/markstone111/side_end.dev/tree/main/human-pose-estimation"
   },
@@ -160,7 +160,7 @@ export const projectsData: Project[] = [
     ],
     techStack: ["Python", "TensorFlow", "Streamlit", "GTTS", "Scikit-learn"],
     backgroundColor: "bg-brutal-yellow",
-    imageUrl: "",
+    imageUrl: "/assets/project_thumbnail/chatsphere.png",
     liveLink: "https://nikunj-chatbot.streamlit.app/",
     githubLink: "https://github.com/markstone111/side_end.dev/tree/main/ChatBot(Intent-Based)"
   },
@@ -178,7 +178,7 @@ export const projectsData: Project[] = [
     ],
     techStack: ["JavaScript", "Django", "HTML", "Tailwind CSS"],
     backgroundColor: "bg-brutal-green",
-    imageUrl: "",
+    imageUrl: "/assets/project_thumbnail/satya.png",
     liveLink: "https://satya-one.vercel.app/",
     githubLink: "https://github.com/markstone111/Satya"
   },
@@ -212,7 +212,7 @@ export const projectsData: Project[] = [
     ],
     techStack: ["TypeScript", "Next.js", "Firebase", "Next Auth", "Web Sockets", "Web Container"],
     backgroundColor: "bg-brutal-pink",
-    imageUrl: "",
+    imageUrl: "/assets/project_thumbnail/bytecanvas.png",
     liveLink: "",
     githubLink: "https://github.com/markstone111/ByteCanvas"
   },
@@ -228,7 +228,7 @@ export const projectsData: Project[] = [
     ],
     techStack: ["Kotlin", "Jetpack Compose", "Room Database"],
     backgroundColor: "bg-brutal-blue",
-    imageUrl: "",
+    imageUrl: "/assets/project_thumbnail/taskhive.png",
     liveLink: "",
     githubLink: ""
   }
