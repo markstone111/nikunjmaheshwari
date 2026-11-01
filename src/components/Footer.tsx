@@ -79,7 +79,6 @@ export default function Footer() {
           <div className="flex gap-4 font-bold text-sm md:text-base text-black dark:text-white">
             <a href="/developers" className="hover:text-brutal-green transition-colors">Developers/API</a>
             <a href="/about" className="hover:text-brutal-green transition-colors">About</a>
-            <a href="/contact" className="hover:text-brutal-green transition-colors">Contact</a>
             <a href="/privacy" className="hover:text-brutal-green transition-colors">Privacy Policy</a>
           </div>
         </div>
