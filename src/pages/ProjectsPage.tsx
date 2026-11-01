@@ -34,7 +34,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           <img 
             src={project.imageUrl} 
             alt={project.name} 
-            className="w-full h-[300px] sm:h-[400px] object-cover mix-blend-normal group-hover:mix-blend-luminosity transition-all duration-500"
+            className="w-full h-[300px] sm:h-[400px] object-contain bg-white dark:bg-tars-board group-hover:scale-[1.02] transition-transform duration-500"
           />
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
