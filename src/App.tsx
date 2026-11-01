@@ -19,6 +19,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import DevelopersPage from './pages/DevelopersPage';
+import CertificationsPage from './pages/CertificationsPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -67,6 +68,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/developers" element={<DevelopersPage />} />
           <Route path="/docs" element={<DevelopersPage />} />
+          <Route path="/certifications" element={<CertificationsPage />} />
         </Routes>
         
         {/* Global Footer (Hidden on Terminal and TARS) */}

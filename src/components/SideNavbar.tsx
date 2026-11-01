@@ -1,5 +1,5 @@
 import { useState, MouseEvent } from 'react';
-import { Home, FolderGit2, User, Mail, BrainCircuit, Terminal, Menu, X, Bot, BookOpen } from 'lucide-react';
+import { Home, FolderGit2, User, Mail, BrainCircuit, Terminal, Menu, X, Bot, BookOpen, Award } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,6 +10,7 @@ const navItems = [
   { icon: BrainCircuit, label: 'Obsessions', path: '/obsessions' },
   { icon: BookOpen, label: 'Blogs', path: '/blogs' },
   { icon: Bot, label: 'T.A.R.S', path: '/tars' },
+  { icon: Award, label: 'Certifications', path: '/certifications' },
   { icon: Terminal, label: 'Terminal', path: '/terminal' },
   { icon: User, label: 'About', path: '/#about', isHash: true },
   { icon: Mail, label: 'Contact', path: '/#contact', isHash: true }
