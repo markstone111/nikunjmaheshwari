@@ -1,9 +1,6 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/((?!api/|assets/|public/|logos/|hero_section_pic|hero_section_pic_2|hero_section_pic_2_copy|vite.svg|img1.jpg|sitemap.xml|robots.txt|llms.txt|llms-full.txt|openapi.json).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
