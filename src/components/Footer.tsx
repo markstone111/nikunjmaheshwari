@@ -31,7 +31,7 @@ export default function Footer() {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-16">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function Footer() {
       </div>
       
       {/* 3. Bottom Minimal Bar */}
-      <div className="w-full border-t-4 border-black bg-white dark:bg-tars-board py-6 px-4">
+      <div className="w-full border-t-4 border-black bg-white dark:bg-tars-board py-6 px-6 sm:px-8 md:px-12 lg:px-16">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="font-bold text-lg uppercase tracking-wider text-black dark:text-white">
             © {new Date().getFullYear()} Nikunj Maheshwari. Built with Brutalism.

@@ -5,9 +5,9 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Blogs from './components/Blogs';
 import Footer from './components/Footer';
-import SideNavbar from './components/SideNavbar';
-import ThemeToggle from './components/ThemeToggle';
+import Navbar from './components/Navbar';
 import CommandPalette from './components/CommandPalette';
+import ScrollIndicators from './components/ScrollIndicators';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import TerminalPage from './pages/TerminalPage';
@@ -32,6 +32,7 @@ function ScrollToTop() {
 function HomePage() {
   return (
     <>
+      <ScrollIndicators />
       <Hero />
       <About />
       <Projects />
@@ -47,11 +48,10 @@ function App() {
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
 
   return (
-    <div className="min-h-screen bg-brutal-bg dark:bg-tars-board flex">
+    <div className="min-h-screen bg-brutal-bg dark:bg-tars-board flex flex-col selection:bg-brutal-green selection:text-black">
       <ScrollToTop />
-      {/* Global Components */}
-      <ThemeToggle />
-      <SideNavbar />
+      {/* Global Navigation (Top Navbar at top, docked capsule when scrolled) */}
+      <Navbar />
       <CommandPalette />
       
       {/* Main content area */}
