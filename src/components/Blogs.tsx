@@ -13,7 +13,7 @@ export default function Blogs() {
     <section id="blogs" className="py-20 bg-white dark:bg-tars-board font-sans border-t-4 border-black overflow-hidden relative">
       
       {/* 1. Header Strip Segment */}
-      <div className="w-full flex-col flex lg:flex-row items-center justify-between border-b-4 border-black pb-8 px-4 lg:px-12 mb-16 relative">
+      <div className="w-full flex-col flex lg:flex-row items-center justify-between border-b-4 border-black pb-8 px-6 sm:px-8 md:px-12 lg:px-16 mb-16 relative">
         <div className="flex flex-col relative w-full lg:w-3/4">
           <h2 className="text-[3rem] sm:text-[5rem] lg:text-[7rem] font-black uppercase tracking-tighter leading-[0.9] text-transparent" style={{ WebkitTextStroke: '2px black' }}>
             BUILD LOGS
@@ -45,7 +45,7 @@ export default function Blogs() {
       </div>
 
       {/* 2. Grid Cards Segment */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         <motion.div
            ref={ref}
            initial={{ opacity: 0, y: 50 }}

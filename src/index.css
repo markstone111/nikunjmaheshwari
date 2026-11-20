@@ -15,9 +15,25 @@
 }
 
 @layer base {
-  body {
+  /* Hide scrollbar globally while maintaining smooth scrolling */
+  html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scroll-behavior: smooth;
     @apply bg-brutal-bg text-black dark:bg-tars-board dark:text-white transition-colors duration-300;
-    /* Custom scrollbar to fit the neo-brutalist theme */
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar,
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+    background: transparent;
   }
 }
 
@@ -28,5 +44,14 @@
   
   .brutal-btn {
     @apply px-6 py-2 border-brutal border-black shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all active:translate-x-[4px] active:translate-y-[4px] font-bold;
+  }
+
+  /* Utility for completely hidden scrollbars */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

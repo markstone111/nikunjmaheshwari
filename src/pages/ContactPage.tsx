@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Linkedin, MapPin } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Phone } from 'lucide-react';
 
 export default function ContactPage() {
   return (
@@ -20,15 +20,19 @@ export default function ContactPage() {
           </p>
           
           <div className="mt-8 space-y-4">
-            <a href="mailto:nikunjmaheshwari@example.com" className="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a href="mailto:contact@nikunjmaheshwari.xyz" className="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               <Mail className="w-6 h-6" />
-              <span>Contact via Email</span>
+              <span>contact@nikunjmaheshwari.xyz</span>
+            </a>
+            <a href="https://wa.me/919720324825" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+              <Phone className="w-6 h-6 text-green-500" />
+              <span>WhatsApp: +91 9720324825</span>
             </a>
             <a href="https://github.com/markstone111" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               <Github className="w-6 h-6" />
               <span>GitHub Profile</span>
             </a>
-            <a href="https://www.linkedin.com/in/nikunjmaheshwari" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a href="https://www.linkedin.com/in/nikunjm111/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               <Linkedin className="w-6 h-6" />
               <span>LinkedIn Profile</span>
             </a>

@@ -1,19 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { cn } from '../lib/utils';
 
-type Theme = 'system' | 'light' | 'dark';
+export type Theme = 'system' | 'light' | 'dark';
 
-export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('system');
+export function useTheme() {
+  const [theme, setTheme] = useState<Theme>(() => {
+    return (localStorage.getItem('theme') as Theme) || 'system';
+  });
 
   useEffect(() => {
-    // Get initial theme
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      updateTheme(savedTheme);
-    }
+    const savedTheme = (localStorage.getItem('theme') as Theme) || 'system';
+    setTheme(savedTheme);
+
+    const handleSync = () => {
+      const current = (localStorage.getItem('theme') as Theme) || 'system';
+      setTheme(current);
+    };
+
+    window.addEventListener('theme-changed', handleSync);
+    window.addEventListener('storage', handleSync);
+    return () => {
+      window.removeEventListener('theme-changed', handleSync);
+      window.removeEventListener('storage', handleSync);
+    };
   }, []);
 
   const updateTheme = (newTheme: Theme) => {
@@ -28,32 +39,57 @@ export default function ThemeToggle() {
     }
 
     localStorage.setItem('theme', newTheme);
+    setTheme(newTheme);
+    window.dispatchEvent(new Event('theme-changed'));
   };
 
-  const handleThemeChange = () => {
+  const toggleTheme = () => {
     const themeOrder: Theme[] = ['system', 'light', 'dark'];
     const currentIndex = themeOrder.indexOf(theme);
     const newTheme = themeOrder[(currentIndex + 1) % themeOrder.length];
-    
-    setTheme(newTheme);
     updateTheme(newTheme);
   };
 
+  return { theme, toggleTheme };
+}
+
+interface ThemeToggleProps {
+  className?: string;
+  size?: number;
+  isFloating?: boolean;
+}
+
+export default function ThemeToggle({ className, size = 18, isFloating = false }: ThemeToggleProps) {
+  const { theme, toggleTheme } = useTheme();
+
   const getIcon = () => {
     switch (theme) {
-      case 'light': return <Sun size={20} />;
-      case 'dark': return <Moon size={20} />;
-      default: return <Monitor size={20} />;
+      case 'light': return <Sun size={size} />;
+      case 'dark': return <Moon size={size} />;
+      default: return <Monitor size={size} />;
     }
   };
 
+  const getTooltip = () => {
+    switch (theme) {
+      case 'light': return 'Theme: Light (Click to switch to Dark)';
+      case 'dark': return 'Theme: Dark (Click to switch to System)';
+      default: return 'Theme: System (Click to switch to Light)';
+    }
+  };
+
+  const defaultClasses = isFloating
+    ? "fixed top-4 right-4 z-[60] p-2.5 rounded-none bg-black dark:bg-brutal-green shadow-brutal border-2 border-black text-white dark:text-black hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+    : "p-2 rounded-none bg-white dark:bg-tars-gray border-2 border-black text-black dark:text-white shadow-brutal-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all";
+
   return (
     <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      onClick={handleThemeChange}
-      className="fixed top-4 right-4 z-[100] p-2 md:p-3 rounded-none bg-black dark:bg-brutal-green shadow-brutal border-2 border-black text-white dark:text-black transition-all hover:-translate-y-1"
-      title={`Current Theme: ${theme}`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={toggleTheme}
+      className={cn(defaultClasses, className)}
+      title={getTooltip()}
+      aria-label="Toggle theme"
     >
       {getIcon()}
     </motion.button>
