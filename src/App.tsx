@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Blogs from './components/Blogs';
@@ -35,6 +36,7 @@ function HomePage() {
       <ScrollIndicators />
       <Hero />
       <About />
+      <Experience />
       <Projects />
       <Blogs />
       <Contact />

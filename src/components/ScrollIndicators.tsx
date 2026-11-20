@@ -6,9 +6,10 @@ import { useLocation } from 'react-router-dom';
 const sections = [
   { id: 'home', label: '01 // HOME' },
   { id: 'about', label: '02 // ABOUT' },
-  { id: 'projects', label: '03 // PROJECTS' },
-  { id: 'blogs', label: '04 // LOGS' },
-  { id: 'contact', label: '05 // CONTACT' },
+  { id: 'experience', label: '03 // EXP' },
+  { id: 'projects', label: '04 // PROJECTS' },
+  { id: 'blogs', label: '05 // LOGS' },
+  { id: 'contact', label: '06 // CONTACT' },
 ];
 
 export default function ScrollIndicators() {

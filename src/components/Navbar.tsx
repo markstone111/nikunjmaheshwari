@@ -11,7 +11,8 @@ import {
   Bot, 
   BookOpen, 
   Award,
-  Search
+  Search,
+  Briefcase
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -20,6 +21,7 @@ import ThemeToggle from './ThemeToggle';
 
 export const navLinks = [
   { label: 'About', path: '/#about', isHash: true },
+  { label: 'Experience', path: '/#experience', isHash: true },
   { label: 'Projects', path: '/projects' },
   { label: 'Obsessions', path: '/obsessions' },
   { label: 'Blogs', path: '/blogs' },
@@ -31,6 +33,7 @@ export const navLinks = [
 export const dockItems = [
   { icon: Home, label: 'Home', path: '/' },
   { icon: User, label: 'About', path: '/#about', isHash: true },
+  { icon: Briefcase, label: 'Experience', path: '/#experience', isHash: true },
   { icon: FolderGit2, label: 'Projects', path: '/projects' },
   { icon: BrainCircuit, label: 'Obsessions', path: '/obsessions' },
   { icon: BookOpen, label: 'Blogs', path: '/blogs' },
